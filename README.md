@@ -4,7 +4,7 @@ A global ruff rules applier
 
 Add the following to your `.pre-commit-config.yaml`
 
-Bash support: 
+Bash support:
 
 ```yaml
 repos:
@@ -26,7 +26,7 @@ repos:
     hooks:
       - id: omni-ruff-py
         name: Copy a global Ruff config file to project repo
-        entry: hooks/copy_ruff_config.sh
+        entry: omni-ruff-py
         language: python
 ```
 

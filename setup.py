@@ -2,12 +2,12 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='omni-ruff',
+    name='omni-ruff-py',
     version='0.1',
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'copy-ruff-config=hooks.copy_ruff_config.sh',
+            'omni-ruff-py=hooks.copy_ruff_config.main',
         ],
     },
 )
