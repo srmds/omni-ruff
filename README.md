@@ -26,13 +26,7 @@ repos:
         name: Copy a global Ruff config file to project repo
 ```
 
-Then run pre-commit:
-
-```shell
-$ pre-commit run --all-files
-```
-
-Azure private hosted repo flavour:
+☁️ Azure private hosted repo flavour:
 
 ```yaml
 repos:
