@@ -15,7 +15,7 @@ def main():
             .stdout.decode("utf-8")
             .rstrip()
         )
-        source_conf = "ruff.toml"
+        source_conf = Path(__file__).resolve().parent / "ruff.toml"
         dest_conf = repo_root / source_conf
 
         print(f"REPO ROOT: {repo_root}")
