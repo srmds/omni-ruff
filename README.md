@@ -9,7 +9,7 @@ Add the following to your `.pre-commit-config.yaml`
 ```yaml
 repos:
   - repo: https://github.com/srmds/omni-ruff
-    rev: main
+    rev: 0.1.0
     hooks:
       - id: omni-ruff-sh
         name: Copy a global Ruff config file to project repo
@@ -20,7 +20,7 @@ repos:
 ```yaml
 repos:
   - repo: https://github.com/srmds/omni-ruff
-    rev: main
+    rev: 0.1.0
     hooks:
       - id: omni-ruff-py
         name: Copy a global Ruff config file to project repo
