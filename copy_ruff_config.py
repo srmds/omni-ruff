@@ -15,9 +15,8 @@ def main():
             .stdout.decode("utf-8")
             .rstrip()
         )
-        hook_root = Path(Path.cwd())
-        source_conf = hook_root / "ruff.toml"
-        dest_conf = repo_root / "ruff.toml"
+        source_conf = "ruff.toml"
+        dest_conf = repo_root / source_conf
 
         print(f"REPO ROOT: {repo_root}")
         print(f"HOOK ROOT: {source_conf}")
