@@ -9,12 +9,12 @@ import argparse
 # export PROJECT=<VALUE> && \
 # export REPO=<VALUE> && \
 # export PAT=<VALUE> 
-def main():
+def main(argv=None):
     
     try:
         parser = argparse.ArgumentParser()
-        parser.add_argument("--config", type=str, help="The name of the global ruff config file, for example: ruff.toml")
-        args = parser.parse_args()
+        parser.add_argument("--config", type=str, default='pyproject.toml', help="The name of the global ruff config file, for example: ruff.toml")
+        args = parser.parse_args(argv)
         config = args.config
         
         if args.config is None:
@@ -78,7 +78,7 @@ def main():
 
 if __name__ == "__main__":
     try:
-        main()
+        main(sys.argv[1:])
     except Exception as e:
         print(e)
         sys.exit(1)

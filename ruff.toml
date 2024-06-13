@@ -1,78 +1,82 @@
-# Exclude a variety of commonly ignored directories.
+[tool.ruff]
+# Increase the maximum line length to 120 characters.
+line-length = 120
+# All standard rules. For all rules check https://beta.ruff.rs/docs/rules/
+lint.select = ["ALL"]
+# Extended "nursery" rules
+lint.extend-select = ["E111", "E112", "E113", "E114", "E115", "E116", "E117", "E201", "E202", "E203", "E211",
+                "E221", "E222", "E223", "E224", "E225", "E226", "E227", "E228", "E231", "E251", "E252", "E261",
+                "E262", "E265", "E266", "E271", "E272", "E273", "E274", "E275", "PLC1901"]
+
+# Tested and verified
+#fixable = ["ANN204", "B007", "COM812", "COM819", "E202", "EM102", "F541", "F841", "I001", "PD002", "Q000", "RET504", "SIM118",
+#           "UP015", "W291"]
+#unfixable = []
+   
+
+# All rules that we want to ignore, including explanation
+# Note: not ignoring rules means they are mandatory to complete PR
+lint.ignore = [
+    "ANN",      # Missing type annotation -> Typing might be useful, but should not always be mandatory
+    "BLE001",   # Do not catch blind Exception -> It's nice catch specific errors but not mandatory
+    "CPY001",   # No need for copyright notice
+    "D100",     # Docstring top of page -> Nice to have but not mandatory
+    "D101",     # Docstring in class -> Nice to have but not mandatory
+    "D102",     # Docstring in methods -> Nice to have but not mandatory
+    "D103",     # Docstring in public functions -> Nice to have but not mandatory
+    "D104",     # Docstring in public package -> Nice to have but not mandatory
+    "D107",     # Docstring in __init__ -> Nice to have but not mandatory
+    "D205",     # Blank line in docstring -> This rule is too strict and only causes frustration
+    "D211",     # No blank line before docstring -> Rule conflicts with D203. We choose D203
+    "D212",     # Summary first line docstring -> Rule conflicts with D213. We choose D213
+    "D400",     # No need to enforce to end in period in doc string
+    "D415",     # Don't want to enforce having to end the line with punctuation
+    "DTZ001",   # Use tzinfo in datetime() -> Good practice to use tzinfo, but should not be mandatory
+    "ERA001",   # Commented out code not allowed -> This is too strict. Sometimes we might need this
+    "FA102",    # Use import for annotations -> This is not necessary when developing for one python version
+    "FIX002",   # TODO's not allowed in code -> We allow TODO's in code
+    "FURB118",  # Don't want to enforce using operator.itemgetter, library is not well known by the team
+    "G004",     # f-string not allowed in logging -> Not good enough reasons to not allow this
+    "INP001",   # Missing __init__.py -> useful, but not everything is a package for ds, so shouldn't be blocking
+    "N818",     # Not every exception needs to start with error prefix
+    "PERF203",  # try-except not allowed in loops -> Redundant since python 3.11 has 'zero-cost' exception handling
+    "PLR2004",  # Magic value used in comparison -> Not prefered, but should not be reason to reject PR
+    "PLR6201",  # Don't want to enforce using sets when testing for membership in every case
+    "PLR6301",  # Some functions can just be class methods without using self
+    "PD901",    # Variable name "df" should not be used -> We still would like to use df as variable name
+    "RUF012",   # Don't want to annotate class attributes with typing.Classvar
+    "S301",     # Load pickle not allowed -> We mostly use it during development and is not the biggest security risk
+    "S608",     # Hardcoded sql in code is not allowed -> We are generally not vulnerable to sql injection
+    "TD003",    # Missing linked work in TODO -> It's not necessary for us to link workitems on TODO's
+    "TRY002",   # Create your own exception -> It's nice to make custom exception but not mandatory
+    "UP007",    # PEP 604 type annotation -> This only works for python >= 3.10
+    "D203",     # Rule clashes with the ruff formatter
+    ]
+
+# Files / folders that should always be ignored for Ruff check
 exclude = [
-    ".bzr",
-    ".direnv",
-    ".eggs",
-    ".git",
-    ".git-rewrite",
-    ".hg",
-    ".ipynb_checkpoints",
-    ".mypy_cache",
-    ".nox",
-    ".pants.d",
-    ".pyenv",
-    ".pytest_cache",
-    ".pytype",
-    ".ruff_cache",
-    ".svn",
-    ".tox",
-    ".venv",
-    ".vscode",
-    "__pypackages__",
-    "_build",
-    "buck-out",
-    "build",
-    "dist",
-    "node_modules",
-    "site-packages",
-    "venv",
-    "tests"
-]
+    ".venv/*",              # To prevent getting errors locally within installed libraries
+    "notebooks/*",          # Notebooks don't have to be checked for code quality
+    "sandbox/legacy/*",     # We want to check sandbox, but not all legacy code -> Legacy can be moved to this folder
+    "*/static/*"            # When private libraries need to be added to a repo we don't want to check those
+    ]
 
-# Same as Black.
-line-length = 88
-indent-width = 4
+# Rules that we want to ignore for specific files
+[tool.ruff.lint.per-file-ignores]
+"airflow/*" = ["I001", "PLC0415"]      # Ignore imports in airflow DAG, since they might be buggy
+"tests/*" = [
+    "S101", # Asserts should be allowed in tests 
+    "PT009", # The unittest-specific assert style should be allowed
+    "PT027" # allow unittest-specific raises, don't enforce pytest raises
+]        
+"sandbox/*" = [ "T201",     # Prints should be allowed in sandbox
+                "T203"]     # Pretty prints should be allowed in sandbox
 
-# Assume Python 3.8
-target-version = "py38"
+# Rules to be ignored for development, but should be there in production
 
-[lint]
-# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`)  codes by default.
-# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
-# McCabe complexity (`C901`) by default.
-select = ["E4", "E7", "E9", "F"]
-ignore = []
 
-# Allow fix for all enabled rules (when `--fix`) is provided.
-fixable = ["ALL"]
-unfixable = []
-
-# Allow unused variables when underscore-prefixed.
-dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
-
-[format]
-# Like Black, use double quotes for strings.
-quote-style = "double"
-
-# Like Black, indent with spaces, rather than tabs.
-indent-style = "space"
-
-# Like Black, respect magic trailing commas.
-skip-magic-trailing-comma = false
-
-# Like Black, automatically detect the appropriate line ending.
-line-ending = "auto"
-
-# Enable auto-formatting of code examples in docstrings. Markdown,
-# reStructuredText code/literal blocks and doctests are all supported.
-#
-# This is currently disabled by default, but it is planned for this
-# to be opt-out in the future.
-docstring-code-format = false
-
-# Set the line length limit used when formatting code snippets in
-# docstrings.
-#
-# This only has an effect when the `docstring-code-format` setting is
-# enabled.
-docstring-code-line-length = "dynamic"
+# Rules to be debated in team:
+# D100 -> Missing docstring on top of pages -> Now ignored, should we do this for dev / master?
+# D101 -> Missing docstring in class -> now ignored, should we do this for dev / master?
+# D102 -> Missing docstring in methods -> now ignored, should we do this for dev / master?
+# BLE001 / TRY002 -> custom exceptions -> now ignored should not be in dev?, do we want that in master branches?
