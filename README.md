@@ -7,7 +7,7 @@ Add the following to your `.pre-commit-config.yaml`
 ```yaml
 repos:
   - repo: https://github.com/srmds/omni-ruff
-    rev: master
+    rev: main
     hooks:
       - id: omni-ruff
         name: Copy a global Ruff config file to project repo
