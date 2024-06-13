@@ -1,0 +1,4 @@
+- id: omni-ruff
+  name: Copy a global Ruff config file to project repo
+  entry: hooks/copy_ruff_config.sh
+  language: script
