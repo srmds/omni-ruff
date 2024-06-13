@@ -3,13 +3,14 @@ from setuptools import setup, find_packages
 
 setup(
     name="omni-ruff",
-    version="0.5.0",
+    version="0.5.1",
     packages=find_packages(),
+    python_requires=">=3.9",
     author="Steven Ramdas",
     entry_points={
         "console_scripts": [
-            "copy-ruff-config=copy_ruff_config:main",
-            "clone_ruff_config=clone_ruff_config:main"
+            "copy-ruff-config=hooks.copy_ruff_config:main",
+            "clone-ruff-config=hooks.clone_ruff_config:main"
         ],
     },
 )

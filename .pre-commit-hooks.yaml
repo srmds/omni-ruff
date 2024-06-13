@@ -5,11 +5,11 @@
 
 - id: omni-ruff-py
   name: Copy a global Ruff config file to project repo
-  entry: python copy_ruff_config.py
+  entry: python hooks/copy_ruff_config.py
   language: python
 
 - id: omni-ruff-az
   name: Copy a global Ruff config file to project repo
-  entry: clone_ruff_config
+  entry: python hooks/clone_ruff_config.py
   args: [--config=ruff.toml]
   language: python

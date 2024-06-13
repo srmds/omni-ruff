@@ -34,7 +34,7 @@ def main():
     
     branch = "master"  # or the specific branch where the file is located
     repo_url = f"https://{pat}@{org}.visualstudio.com/{project}/_git/{repo}"
-    source_repo_path = Path(__file__).resolve().parent / repo
+    source_repo_path = Path(__file__).resolve().parent.parent / repo
     source_ruff_config_path = source_repo_path / config
      
     repo_root = Path(
