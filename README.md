@@ -13,7 +13,6 @@ repos:
     hooks:
       - id: omni-ruff-sh
         name: Copy a global Ruff config file to project repo
-        entry: hooks/copy_ruff_config_shell.sh
         language: script
 ```
 
@@ -26,7 +25,6 @@ repos:
     hooks:
       - id: omni-ruff-py
         name: Copy a global Ruff config file to project repo
-        entry: hooks/copy_ruff_config.py
         language: python
 ```
 
