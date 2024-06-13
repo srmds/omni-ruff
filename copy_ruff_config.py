@@ -16,10 +16,10 @@ def main():
             .rstrip()
         )
         source_conf = Path(__file__).resolve().parent / "ruff.toml"
-        dest_conf = repo_root / source_conf
+        dest_conf = repo_root / "ruff.toml"
 
-        print(f"REPO ROOT: {repo_root}")
-        print(f"HOOK ROOT: {source_conf}")
+        print(f"SOURCE PATH: {source_conf}")
+        print(f"DEST PATH: {dest_conf}")
 
         # copy the contents of the demo.py file to  a new file called demo1.py
         shutil.copyfile(str(source_conf), str(dest_conf))
