@@ -16,7 +16,7 @@ def main():
             .rstrip()
         )
         hook_root = Path(Path.cwd())
-        source_conf = hook_root / "hooks" / "ruff.toml"
+        source_conf = hook_root / "ruff.toml"
         dest_conf = repo_root / "ruff.toml"
 
         print(f"REPO ROOT: {repo_root}")
