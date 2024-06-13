@@ -8,7 +8,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'hooks/copy_ruff_config.py',
+            'hooks.copy_ruff_config',
         ],
     },
 )
