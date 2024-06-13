@@ -4,7 +4,7 @@ A global ruff rules applier
 
 Add the following to your `.pre-commit-config.yaml`
 
-Bash support:
+🖥️ Bash flavour:
 
 ```yaml
 repos:
@@ -13,10 +13,9 @@ repos:
     hooks:
       - id: omni-ruff-sh
         name: Copy a global Ruff config file to project repo
-        language: script
 ```
 
-Python support:
+𓆙 Python flavour:
 
 ```yaml
 repos:
@@ -25,11 +24,27 @@ repos:
     hooks:
       - id: omni-ruff-py
         name: Copy a global Ruff config file to project repo
-        language: python
 ```
 
 Then run pre-commit:
 
 ```shell
-pre-commit run --all-files
+$ pre-commit run --all-files
+```
+
+Output example:
+
+```shell
+Copy a global Ruff config file to project repo...........................Passed
+```
+
+In the root of your project there is an updated (or new) `ruff.toml` file containing the global ruff rules:
+
+```shell
+
+.
+...
+├── .ruff_cache
+├── ruff.toml
+...
 ```
