@@ -1,0 +1,2 @@
+[console_scripts]
+copy-ruff-config = hooks.copy_ruff_config

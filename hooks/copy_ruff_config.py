@@ -3,14 +3,22 @@ import shutil
 import subprocess
 from pathlib import Path
 
+
 def main():
     try:
-
-        repo_root = Path(subprocess.run("REPO_ROOT=$(git rev-parse --show-toplevel) && echo $REPO_ROOT",shell=True, capture_output=True).stdout.decode('utf-8').rstrip())
+        repo_root = Path(
+            subprocess.run(
+                "REPO_ROOT=$(git rev-parse --show-toplevel) && echo $REPO_ROOT",
+                shell=True,
+                capture_output=True,
+            )
+            .stdout.decode("utf-8")
+            .rstrip()
+        )
         hook_root = Path(Path.cwd())
         source_conf = hook_root / "hooks" / "ruff.toml"
         dest_conf = repo_root / "ruff.toml"
-        
+
         print(f"REPO ROOT: {repo_root}")
         print(f"HOOK ROOT: {source_conf}")
 
@@ -21,10 +29,9 @@ def main():
         sys.exit(1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
-         main()
+        main()
     except Exception as e:
         print(e)
         sys.exit(1)
-        
