@@ -38,7 +38,11 @@ repos:
         args: [--config=global-ruff.toml] # provide path to global ruff config file in source repo
 ```
 
+---
+
 Then export needed env vars:
+
+_only needed when using azure - private repo flavour_
 
 ```shell
 $ export ORG=<VALUE> && \
@@ -57,10 +61,12 @@ $ cp template.env .env
 $ set +o && source .env && set -0
 ```
 
+---
+
 Then run pre-commit:
 
 ```shell
-$ pre-commit run --all-files
+pre-commit run --all-files
 ```
 
 Output example:
