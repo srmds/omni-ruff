@@ -10,7 +10,7 @@ setup(
     python_requires=">=3.9",
     entry_points={
         "console_scripts": [
-            "copy-ruff-config=hooks.copy_ruff_config",
+            "copy-ruff-config=hooks.copy_ruff_config:main",
         ],
     },
 )
