@@ -7,7 +7,7 @@ setup(
     packages=find_packages(),
     entry_points={
         'console_scripts': [
-            'omni-ruff-py=hooks.copy_ruff_config.main',
+            'omni-ruff-py=hooks.copy_ruff_config:main',
         ],
     },
 )
