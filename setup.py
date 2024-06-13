@@ -9,6 +9,7 @@ setup(
     entry_points={
         "console_scripts": [
             "copy-ruff-config=copy_ruff_config:main",
+            "clone-ruff-config=clone_ruff_config:main"
         ],
     },
 )
