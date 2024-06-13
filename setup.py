@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 setup(
     name="omni-ruff",
     version="0.5.1",
-    packages=find_packages(),
+    packages=find_packages(include=["hooks.*"]),
     python_requires=">=3.9",
     author="Steven Ramdas",
     entry_points={
