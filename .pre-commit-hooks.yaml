@@ -5,5 +5,5 @@
 
 - id: omni-ruff-py
   name: Copy a global Ruff config file to project repo
-  entry: hooks/copy_ruff_config.py
+  entry: hooks.copy_ruff_config:main
   language: python
