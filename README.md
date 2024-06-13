@@ -4,7 +4,7 @@ A global ruff rules applier
 
 Add the following to your `.pre-commit-config.yaml`
 
-🖥️ Bash flavour:
+🖥️ Bash flavour (toy functionality):
 
 ```yaml
 repos:
@@ -15,7 +15,7 @@ repos:
         name: Copy a global Ruff config file to project repo
 ```
 
-𓆙 Python flavour:
+𓆙 Python flavour (toy functionality):
 
 ```yaml
 repos:
