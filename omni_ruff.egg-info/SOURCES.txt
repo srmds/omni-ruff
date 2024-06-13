@@ -1,8 +1,0 @@
-LICENSE
-README.md
-setup.py
-omni_ruff.egg-info/PKG-INFO
-omni_ruff.egg-info/SOURCES.txt
-omni_ruff.egg-info/dependency_links.txt
-omni_ruff.egg-info/entry_points.txt
-omni_ruff.egg-info/top_level.txt
