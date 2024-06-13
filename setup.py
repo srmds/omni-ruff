@@ -4,12 +4,11 @@ from setuptools import setup, find_packages
 setup(
     name="omni-ruff",
     version="0.1",
-    packages=find_packages(),
+    packages=find_packages(include=["hooks.*"]),
     author="Steven Ramdas",
-    python_requires=">=3.9",
     entry_points={
         "console_scripts": [
-            "copy-ruff-config=copy_ruff_config:main",
+            "copy-ruff-config=hooks.copy_ruff_config:main",
         ],
     },
 )
