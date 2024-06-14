@@ -4,6 +4,8 @@ import shutil
 import sys
 from pathlib import Path
 import argparse
+import tempfile
+import platform
 
 # $ export ORG=<VALUE> && \
 # export PROJECT=<VALUE> && \
@@ -51,44 +53,31 @@ def main(argv=None):
         )
     destination_ruff_config_path = repo_root / "ruff.toml"
 
+    temp_dir: Path = Path("/tmp") if platform.system() == "Darwin" else Path(tempfile.gettempdir())
+    temp_clone_dir: Path = temp_dir / repo
+            
     try:
         # Ensure PAT is available
         if not pat:
             raise ValueError("PAT environment variable is not set")
 
-        if source_repo_path.exists():
+        if temp_clone_dir.exists():
             # Repo is already cloned, pull latest changes, if any
             print("Ruff global repo locally exists, check for updates...")
-            subprocess.call(["git", "pull"], cwd=str(source_repo_path))
+            subprocess.call(["git", "pull"], cwd=str(temp_clone_dir))
 
         else:
             # Clone the repository using the PAT
-            print("Ruff global repo does not locally exist, clone repo...")
-            
-            import tempfile
-            import platform
-
-            temp_dir: Path = Path("/tmp") if platform.system() == "Darwin" else Path(tempfile.gettempdir())
-            
-            temp_clone_dir: Path = temp_dir / repo
-            
-            if temp_clone_dir.exists():
-                shutil.rmtree(str(temp_clone_dir))
-            
+            print("Ruff global repo does not locally exist, clone repo...") 
+                      
             try:
-                res = subprocess.run([
+                subprocess.run([
                     "git", "clone", "--branch", branch, repo_url, str(temp_clone_dir)
-                ], 
-                    check=True,
-                    shell=True,
-                    capture_output=True
-                ).stdout.decode("utf-8").rstrip()
-                print(res)
+                ], check=True)
             except Exception as e:
                 print(e)
             
         # Copy the TOML file to the desired location
-        
         shutil.copyfile(f"{temp_clone_dir}/{config}", str(destination_ruff_config_path))
 
         # Clean up the temporary clone directory
