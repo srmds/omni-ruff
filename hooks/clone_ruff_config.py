@@ -83,10 +83,10 @@ def main(argv=None):
                     shell=True,
                     capture_output=True
                 ).stdout.decode("utf-8").rstrip()
+                print(res)
             except Exception as e:
                 print(e)
             
-            print(res)
         # Copy the TOML file to the desired location
         
         shutil.copyfile(f"{temp_clone_dir}/{config}", str(destination_ruff_config_path))
