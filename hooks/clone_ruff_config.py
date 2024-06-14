@@ -70,9 +70,10 @@ def main(argv=None):
             subprocess.run([
                 "git", "clone", "--branch", branch, repo_url, f"{repo}_{rand}"
             ], check=True)
-
+        
+        x = repo_root / repo / config
         # Copy the TOML file to the desired location
-        shutil.copyfile(str(source_ruff_config_path), str(destination_ruff_config_path))
+        shutil.copyfile(str(x), str(destination_ruff_config_path))
 
         # Clean up the temporary clone directory
         # shutil.rmtree(repo)
