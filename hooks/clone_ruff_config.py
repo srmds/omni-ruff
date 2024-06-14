@@ -12,14 +12,16 @@ import argparse
 def main(argv=None):
     
     try:
-        parser = argparse.ArgumentParser()
-        parser.add_argument("--config", type=str, default='pyproject.toml', help="The name of the global ruff config file, for example: ruff.toml")
-        args = parser.parse_args(argv)
-        config = args.config
+        # parser = argparse.ArgumentParser()
+        # parser.add_argument("--config", type=str, default='pyproject.toml', help="The name of the global ruff config file, for example: ruff.toml")
+        # args = parser.parse_args(argv)
+        config = 'pyproject.toml' # args.config
         
-        print(f"config file: {config}")
         if config is None:
             raise Exception("Mandatory flag --config <path/to/ruff.toml> not set")
+        
+        print(f"config file: {config}")
+
     except Exception as e:
         print(e)
         sys.exit(1)
