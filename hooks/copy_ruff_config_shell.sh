@@ -6,8 +6,10 @@ set -e
 REPO_ROOT=$(git rev-parse --show-toplevel)
 HOOK_DIR=$(dirname "$0")
 
-cd ..
+PARENT_DIR=${HOOK_DIR%??????}
+echo "parent dir $PARENT_DIR"
+
 # Copy the .toml file to the parent directory
-cp $(pwd)/ruff.toml $REPO_ROOT/ruff.toml
+cp $PARENT_DIR/ruff.toml $REPO_ROOT/ruff.toml
 
 echo "Copied ruff.toml to $REPO_ROOT"
