@@ -68,7 +68,7 @@ def main(argv=None):
             import tempfile
             import platform
 
-            temp_dir = Path("/tmp" if platform.system() == "Darwin" else tempfile.gettempdir())
+            temp_dir = Path(f"/tmp/{repo}" if platform.system() == "Darwin" else tempfile.gettempdir())
             if Path(temp_dir).exists():
                 Path(temp_dir).rmdir()
                 
