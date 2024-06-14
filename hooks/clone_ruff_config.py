@@ -3,7 +3,7 @@ import subprocess
 import shutil
 import sys
 from pathlib import Path
-import argparse
+# import argparse
 import tempfile
 import platform
 
@@ -37,10 +37,8 @@ def main(argv=None):
         print(f"Mandatory environment variable: {e} is not set")
         sys.exit(1)
     
-    branch = "master"  # or the specific branch where the file is located
+    branch = "feature/ruff-config" # "master"  # or the specific branch where the file is located
     repo_url = f"https://{pat}@{org}.visualstudio.com/{project}/_git/{repo}"
-    source_repo_path = Path(__file__).resolve().parent.parent / repo
-    source_ruff_config_path = source_repo_path / config
      
     repo_root = Path(
             subprocess.run(
