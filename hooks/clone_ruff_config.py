@@ -69,11 +69,19 @@ def main(argv=None):
             import platform
 
             temp_dir = Path("/tmp" if platform.system() == "Darwin" else tempfile.gettempdir())
-
-            subprocess.run([
-                "git", "clone", "--branch", branch, repo_url, f"{temp_dir}/{repo}"
-            ], check=True)
-        
+            Path(temp_dir).mkdir(exist_ok=True)
+            
+            try:
+                res = subprocess.run([
+                    "git", "clone", "--branch", branch, repo_url, f"{temp_dir}/{repo}"
+                ], 
+                    check=True,
+                    shell=True,
+                    capture_output=True
+                ).stdout.decode("utf-8").rstrip()
+            except Exception as e:
+                print(e)
+            
         
         # Copy the TOML file to the desired location
         shutil.copyfile(f"{temp_dir}/{config}", str(destination_ruff_config_path))
