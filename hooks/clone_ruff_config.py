@@ -64,11 +64,14 @@ def main(argv=None):
         else:
             # Clone the repository using the PAT
             print("Ruff global repo does not locally exist, clone repo...")
-            import uuid
-            rand = uuid.uuid4()
+            
+            import tempfile
+            import platform
+
+            temp_dir = Path("/tmp" if platform.system() == "Darwin" else tempfile.gettempdir())
 
             subprocess.run([
-                "git", "clone", "--branch", branch, repo_url, f"{repo}_{rand}"
+                "git", "clone", "--branch", branch, repo_url, f"{temp_dir}/{repo}"
             ], check=True)
         
         x = repo_root / repo / config
