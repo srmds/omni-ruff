@@ -9,18 +9,19 @@ import argparse
 # export PROJECT=<VALUE> && \
 # export REPO=<VALUE> && \
 # export PAT=<VALUE> 
-def main():
+def main(argv=None):
     
     try:
         parser = argparse.ArgumentParser()
-        parser.add_argument("--config", type=str, help="The name of the global ruff config file, for example: ruff.toml")
-        args = parser.parse_args()
+        parser.add_argument("--config", type=str, default='pyproject.toml', help="The name of the global ruff config file, for example: ruff.toml")
+        args = parser.parse_args(argv)
         config = args.config
         
-        if args.config is None:
+        print(f"config file: {config}")
+        if config is None:
             raise Exception("Mandatory flag --config <path/to/ruff.toml> not set")
     except Exception as e:
-        print(f"Mandatory flag --config <path/to/ruff.toml> not set")
+        print(e)
         sys.exit(1)
         
     try:
@@ -34,7 +35,7 @@ def main():
     
     branch = "master"  # or the specific branch where the file is located
     repo_url = f"https://{pat}@{org}.visualstudio.com/{project}/_git/{repo}"
-    source_repo_path = Path(__file__).resolve().parent / repo
+    source_repo_path = Path(__file__).resolve().parent.parent / repo
     source_ruff_config_path = source_repo_path / config
      
     repo_root = Path(
@@ -78,7 +79,7 @@ def main():
 
 if __name__ == "__main__":
     try:
-        main()
+        main(sys.argv[1:])
     except Exception as e:
         print(e)
         sys.exit(1)

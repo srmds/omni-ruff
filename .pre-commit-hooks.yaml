@@ -1,15 +1,16 @@
 - id: omni-ruff-sh
-  name: Copy a global Ruff config file to project repo
+  name: copy ruff config (shell)
+  description: Copy a global Ruff config file to project repo
   entry: copy_ruff_config_shell.sh
   language: script
-
 - id: omni-ruff-py
-  name: Copy a global Ruff config file to project repo
-  entry: python copy_ruff_config.py
+  name: copy ruff config (python) 
+  description: Copy a global Ruff config file to project repo
+  entry: copy-ruff-config
   language: python
-
 - id: omni-ruff-az
-  name: Copy a global Ruff config file to project repo
-  entry: clone_ruff_config
-  args: [--config=ruff.toml]
+  name: clone ruff config (azure)
+  description: Clone a global Ruff config file to project repo
+  entry: clone-ruff-config
   language: python
+  args: ['--config', 'pyproject.toml']
