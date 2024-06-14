@@ -10,6 +10,6 @@ ls -la
 echo "*************" 
 ls -la $HOOK_DIR
 # Copy the .toml file to the parent directory
-cp $HOOK_DIR/ruff.toml $REPO_ROOT/ruff.toml
+cp ../$HOOK_DIR/ruff.toml $REPO_ROOT/ruff.toml
 
 echo "Copied ruff.toml to $REPO_ROOT"
