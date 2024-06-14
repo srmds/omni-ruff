@@ -13,3 +13,4 @@
   description: Clone a global Ruff config file to project repo
   entry: clone-ruff-config
   language: python
+  args: ['--config', 'pyproject.toml']
