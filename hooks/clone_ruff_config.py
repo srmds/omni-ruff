@@ -13,7 +13,7 @@ def main(argv=None):
     
     try:
         parser = argparse.ArgumentParser()
-        parser.add_argument("--config", type=str, default='pyproject.toml', help="The name of the global ruff config file, for example: ruff.toml")
+        parser.add_argument("--config", type=str, default='pyproject.toml', action='store_true', help="The name of the global ruff config file, for example: ruff.toml")
         args = parser.parse_args(argv)
         config = args.config
         
