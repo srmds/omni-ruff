@@ -9,7 +9,7 @@ Add the following to your `.pre-commit-config.yaml`
 ```yaml
 repos:
   - repo: https://github.com/srmds/omni-ruff
-    rev: 0.3.0
+    rev: 0.6.4
     hooks:
       - id: omni-ruff-sh
         name: Copy a global Ruff config file to project repo
@@ -20,7 +20,7 @@ repos:
 ```yaml
 repos:
   - repo: https://github.com/srmds/omni-ruff
-    rev: 0.3.0
+    rev: 0.6.4
     hooks:
       - id: omni-ruff-py
         name: Copy a global Ruff config file to project repo
@@ -31,7 +31,7 @@ repos:
 ```yaml
 repos:
   - repo: https://github.com/srmds/omni-ruff
-    rev: 0.3.0
+    rev: 0.6.4
     hooks:
       - id: omni-ruff-az
         name: Copy a global Ruff from a private Azure Repo to project repo
@@ -54,10 +54,21 @@ $ export ORG=<VALUE> && \
 or via `.env` export:
 
 ```shell
-$ cp template.env .env
-# After copy, add the needed values to the variables inside the .env file
+$ touch .env
+```
 
-# Then export all the variables at once:
+After copy/pasting below, add the needed values to the variables inside the .env file
+
+```text
+ORG=<VALUE>
+PROJECT=<VALUE>
+REPO=<VALUE>
+PAT=<VALUE>
+```
+
+Then export all the variables at once:
+
+```shell
 $ set +o && source .env && set -0
 ```
 
