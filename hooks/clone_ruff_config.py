@@ -76,8 +76,8 @@ def main(argv=None):
                 shutil.rmtree(str(temp_clone_dir))
             
             try:
-                _ = subprocess.run([
-                    "git", "clone", "--branch", branch, repo_url, f"{temp_dir}/{repo}"
+                res = subprocess.run([
+                    "git", "clone", "--branch", branch, repo_url, str(temp_clone_dir)
                 ], 
                     check=True,
                     shell=True,
@@ -86,8 +86,9 @@ def main(argv=None):
             except Exception as e:
                 print(e)
             
-        
+            print(res)
         # Copy the TOML file to the desired location
+        
         shutil.copyfile(f"{temp_clone_dir}/{config}", str(destination_ruff_config_path))
 
         # Clean up the temporary clone directory
