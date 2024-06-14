@@ -77,7 +77,7 @@ $ set +o && source .env && set -0
 Then run pre-commit:
 
 ```shell
-pre-commit run --all-files
+$ pre-commit run --all-files
 ```
 
 Output example:
