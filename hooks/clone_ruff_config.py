@@ -68,12 +68,12 @@ def main(argv=None):
             import tempfile
             import platform
 
-            temp_dir = Path("/tmp") if platform.system() == "Darwin" else tempfile.gettempdir()
+            temp_dir: Path = Path("/tmp") if platform.system() == "Darwin" else Path(tempfile.gettempdir())
             
-            temp_clone_dir = temp_dir / repo
+            temp_clone_dir: Path = temp_dir / repo
             
-            if Path(temp_clone_dir).exists():
-                shutil.rmtree(temp_clone_dir)
+            if temp_clone_dir.exists():
+                shutil.rmtree(str(temp_clone_dir))
             
             try:
                 _ = subprocess.run([
