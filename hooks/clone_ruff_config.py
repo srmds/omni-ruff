@@ -64,8 +64,11 @@ def main(argv=None):
         else:
             # Clone the repository using the PAT
             print("Ruff global repo does not locally exist, clone repo...")
+            import uuid
+            rand = uuid.uuid4()
+
             subprocess.run([
-                "git", "clone", "--branch", branch, repo_url, repo
+                "git", "clone", "--branch", branch, repo_url, f"{repo}_{rand}"
             ], check=True)
 
         # Copy the TOML file to the desired location
