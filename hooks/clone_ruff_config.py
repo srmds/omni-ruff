@@ -74,9 +74,9 @@ def main(argv=None):
                 "git", "clone", "--branch", branch, repo_url, f"{temp_dir}/{repo}"
             ], check=True)
         
-        x = repo_root / repo / config
+        
         # Copy the TOML file to the desired location
-        shutil.copyfile(str(x), str(destination_ruff_config_path))
+        shutil.copyfile(f"{temp_dir}/{config}", str(destination_ruff_config_path))
 
         # Clean up the temporary clone directory
         # shutil.rmtree(repo)
