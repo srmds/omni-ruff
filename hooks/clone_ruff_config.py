@@ -88,7 +88,7 @@ def main(argv=None):
             
         
         # Copy the TOML file to the desired location
-        shutil.copyfile(f"{temp_dir}/{config}", str(destination_ruff_config_path))
+        shutil.copyfile(f"{temp_clone_dir}/{config}", str(destination_ruff_config_path))
 
         # Clean up the temporary clone directory
         # shutil.rmtree(repo)
