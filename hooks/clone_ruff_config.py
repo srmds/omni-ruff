@@ -69,6 +69,9 @@ def main(argv=None):
             import platform
 
             temp_dir = Path("/tmp" if platform.system() == "Darwin" else tempfile.gettempdir())
+            if Path(temp_dir).exists():
+                Path(temp_dir).rmdir()
+                
             Path(temp_dir).mkdir(exist_ok=True)
             
             try:
