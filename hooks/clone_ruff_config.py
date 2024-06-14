@@ -68,14 +68,15 @@ def main(argv=None):
             import tempfile
             import platform
 
-            temp_dir = Path(f"/tmp/{repo}" if platform.system() == "Darwin" else tempfile.gettempdir())
-            if Path(temp_dir).exists():
-                Path(temp_dir).rmdir()
-                
-            Path(temp_dir).mkdir(exist_ok=True)
+            temp_dir = Path("/tmp") if platform.system() == "Darwin" else tempfile.gettempdir()
+            
+            temp_clone_dir = temp_dir / repo
+            
+            if Path(temp_clone_dir).exists():
+                shutil.rmtree(temp_clone_dir)
             
             try:
-                res = subprocess.run([
+                _ = subprocess.run([
                     "git", "clone", "--branch", branch, repo_url, f"{temp_dir}/{repo}"
                 ], 
                     check=True,
