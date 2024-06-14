@@ -1,7 +1,7 @@
 - id: omni-ruff-sh
   name: copy ruff config (shell)
   description: Copy a global Ruff config file to project repo
-  entry: copy_ruff_config_shell.sh
+  entry: hooks/copy_ruff_config_shell.sh
   language: script
 - id: omni-ruff-py
   name: copy ruff config (python) 
